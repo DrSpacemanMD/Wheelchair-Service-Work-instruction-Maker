@@ -18,7 +18,12 @@ namespace WheelChairStringMaker
             PartNumber = PartNum;
             Name = NameArg;
             Category = Cat;
+
+            char[] charsToTrim = { '\"', ' ', '\'' };
+            CompChairs = CompChairs.Trim(charsToTrim);
             CompatibleChairs = CompChairs.Split(',').ToList();
+            for (int i =0; i < CompatibleChairs.Count;i++)
+                CompatibleChairs[i] = CompatibleChairs[i].Trim(charsToTrim);
         }
     }
 }

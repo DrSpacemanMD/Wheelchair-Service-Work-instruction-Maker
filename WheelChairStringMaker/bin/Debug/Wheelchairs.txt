@@ -1,0 +1,13 @@
+Wheelchair Model	Size	Prescription Code	Propulsion
+Action 2	15x16	1	SP
+Action 2	16x16	2	SP
+Action 2	17x16	3	SP
+Action 2	18x16	4	SP
+Action 2	19x16	5	SP
+Action 2	15x16	6	TS
+Action 2	16x16	7	TS
+Action 2	17x16	8	TS
+Action 2	18x16	9	TS
+Action 2	19x16	10	TS
+Action 3	10x10	11	Power
+Action 3	12x10	12	Power

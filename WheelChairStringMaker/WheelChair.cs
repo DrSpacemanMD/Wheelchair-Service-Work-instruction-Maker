@@ -12,12 +12,14 @@ namespace WheelChairStringMaker
         public double Width;
         public double Depth;
         public string PresCode;
-        public WheelChair(string ModelArg, double WidthArg, double DepthArg, string PresCodeArg)
+        public string PropulsionType;
+        public WheelChair(string ModelArg, double WidthArg, double DepthArg, string PresCodeArg, string PropulsionTypeArg)
         {
             Model = ModelArg;
             Width = WidthArg;
             Depth = DepthArg;
             PresCode = PresCodeArg;
+            PropulsionType = PropulsionTypeArg;
         }
     }
 }
