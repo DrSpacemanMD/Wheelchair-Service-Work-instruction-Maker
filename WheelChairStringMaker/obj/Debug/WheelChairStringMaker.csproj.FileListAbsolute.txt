@@ -1,0 +1,10 @@
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\bin\Debug\WheelChairStringMaker.exe.config
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\bin\Debug\WheelChairStringMaker.exe
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\bin\Debug\WheelChairStringMaker.pdb
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.csproj.AssemblyReference.cache
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.Form1.resources
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.Properties.Resources.resources
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.csproj.GenerateResource.cache
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.csproj.CoreCompileInputs.cache
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.exe
+C:\Users\Johnt\source\repos\WheelChairStringMaker\WheelChairStringMaker\obj\Debug\WheelChairStringMaker.pdb
