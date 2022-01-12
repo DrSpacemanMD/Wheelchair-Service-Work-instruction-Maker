@@ -70,6 +70,12 @@ namespace WheelChairStringMaker
             }
 
             Parts.Clear();//Since we added it into the dict lets delete this to use later
+
+            foreach (DataGridViewColumn dgvc in PartsView.Columns)
+            {
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
         }
 
         private void Wheelchairdropdown_SelectedIndexChanged(object sender, EventArgs e)

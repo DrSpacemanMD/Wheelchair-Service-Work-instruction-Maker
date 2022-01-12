@@ -77,6 +77,7 @@ namespace WheelChairStringMaker
             // PartsView
             // 
             this.PartsView.AllowUserToAddRows = false;
+            this.PartsView.AllowUserToDeleteRows = false;
             this.PartsView.AllowUserToResizeColumns = false;
             this.PartsView.AllowUserToResizeRows = false;
             this.PartsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
