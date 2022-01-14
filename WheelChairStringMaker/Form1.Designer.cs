@@ -44,6 +44,10 @@ namespace WheelChairStringMaker
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.DeliveryDrop = new System.Windows.Forms.ComboBox();
+            this.FootPlateHeightDropDown = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PartsView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -196,11 +200,51 @@ namespace WheelChairStringMaker
             this.label5.TabIndex = 11;
             this.label5.Text = "Text Output";
             // 
+            // DeliveryDrop
+            // 
+            this.DeliveryDrop.FormattingEnabled = true;
+            this.DeliveryDrop.Location = new System.Drawing.Point(12, 130);
+            this.DeliveryDrop.Name = "DeliveryDrop";
+            this.DeliveryDrop.Size = new System.Drawing.Size(285, 28);
+            this.DeliveryDrop.TabIndex = 12;
+            this.DeliveryDrop.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            // 
+            // FootPlateHeightDropDown
+            // 
+            this.FootPlateHeightDropDown.FormattingEnabled = true;
+            this.FootPlateHeightDropDown.Location = new System.Drawing.Point(312, 130);
+            this.FootPlateHeightDropDown.Name = "FootPlateHeightDropDown";
+            this.FootPlateHeightDropDown.Size = new System.Drawing.Size(195, 28);
+            this.FootPlateHeightDropDown.TabIndex = 13;
+            this.FootPlateHeightDropDown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 104);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(119, 20);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Deivery Method";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(308, 107);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(133, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Foot Plate Height";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1391, 798);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.FootPlateHeightDropDown);
+            this.Controls.Add(this.DeliveryDrop);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -238,6 +282,10 @@ namespace WheelChairStringMaker
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox DeliveryDrop;
+        private System.Windows.Forms.ComboBox FootPlateHeightDropDown;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
 

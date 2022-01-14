@@ -69,6 +69,30 @@ namespace WheelChairStringMaker
                 }
             }
 
+            Parts = new List<Part>();
+            using (StreamReader sr = new StreamReader(@"DeliveryMethods.txt"))
+            {
+                string headerLine = sr.ReadLine();
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    //var values = line.Split('\t');
+                    DeliveryDrop.Items.Add(line.Split('\t')[0]);
+                }
+            }
+
+            Parts = new List<Part>();
+            using (StreamReader sr = new StreamReader(@"FootPlates.txt"))
+            {
+                string headerLine = sr.ReadLine();
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    //var values = line.Split('\t');
+                    FootPlateHeightDropDown.Items.Add(line.Split('\t')[0]);
+                }
+            }
+
             Parts.Clear();//Since we added it into the dict lets delete this to use later
 
             foreach (DataGridViewColumn dgvc in PartsView.Columns)
@@ -103,6 +127,8 @@ namespace WheelChairStringMaker
 
             SizeDropdown.SelectedIndex = 0;
             PropulsionDropdown.SelectedIndex = 0;
+            DeliveryDrop.SelectedIndex = 0;
+            FootPlateHeightDropDown.SelectedIndex = 0;
 
 
             foreach (var EntryLists in PartDict)
@@ -164,6 +190,7 @@ namespace WheelChairStringMaker
         {
             String Str = "";
             Str += (string)Wheelchairdropdown.SelectedItem + " " + (string)SizeDropdown.SelectedItem + " " + (string)PropulsionDropdown.SelectedItem + Environment.NewLine;
+            Str += "Delivery: "+(string)DeliveryDrop.SelectedItem + "     Foot Plate Size: " + (string)FootPlateHeightDropDown.SelectedItem + Environment.NewLine;
             int count = 1;
             foreach (Part part in SelectedParts)
             {
