@@ -1,0 +1,10 @@
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\bin\Release\WheelChairStringMaker.exe.config
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\bin\Release\WheelChairStringMaker.exe
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\bin\Release\WheelChairStringMaker.pdb
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.csproj.AssemblyReference.cache
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.Form1.resources
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.Properties.Resources.resources
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.csproj.GenerateResource.cache
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.csproj.CoreCompileInputs.cache
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.exe
+C:\Users\Johnt\source\repos\WheelChairStringMaker\Wheelchair-Service-Work-instruction-Maker\WheelChairStringMaker\obj\Release\WheelChairStringMaker.pdb

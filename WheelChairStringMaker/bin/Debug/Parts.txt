@@ -1,13 +1,13 @@
-Part Name	Part Number	Category 	Compatible Chairs
-Stump Support L	a	Leg Support	"Action 2, Action 3"
-Stump Support R	b	Leg Support	"Action 2, Action 3"
-Cushion	c	Other	"Action 2, Action 3"
-Head Rest	d	Head Support	Action 2
-Elevated leg Rest L	e	Leg Support	Action 2
-Elevated leg Rest R	f	Leg Support	Action 2
-Anti Tip	g	Other	Action 2
-Padded Belt S	h	Trunk Support	Action 2
-Padded Belt M	i	Trunk Support	Action 2
-Padded Belt L	j	Trunk Support	Action 2
-Arm Rest Standard	k	Arm Support	Action 2
-Arm Rest In-Rigged	l	Arm Support	Action 2
+Part Name	Part Number	Category 	Compatible Chairs	Width	Depth	Propulsion Type	incompatible parts	Max Count
+Stump Support L	a	Leg Support	"Action 2, Action 3"	17				
+Stump Support R	b	Leg Support	"Action 2, Action 3"	>17				
+Cushion	c	Other	"Action 2, Action 3"	<17				
+Head Rest	d	Head Support	Action 2	!17				
+Elevated leg Rest L	e	Leg Support	Action 2	>=17				
+Elevated leg Rest R	f	Leg Support	Action 2	<=17				
+Anti Tip	g	Other	Action 2					
+Padded Belt S	h	Trunk Support	Action 2					
+Padded Belt M	i	Trunk Support	Action 2					
+Padded Belt L	j	Trunk Support	Action 2					
+Arm Rest Standard	k	Arm Support	Action 2					
+Arm Rest In-Rigged	l	Arm Support	Action 2					

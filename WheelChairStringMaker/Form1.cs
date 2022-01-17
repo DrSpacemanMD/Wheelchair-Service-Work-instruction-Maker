@@ -20,86 +20,92 @@ namespace WheelChairStringMaker
 
         public Form1()
         {
-            InitializeComponent();
-
-            PartsView.Rows.Clear();
-
-            WheelChairs = new List<WheelChair>();
-            using (StreamReader sr = new StreamReader(@"Wheelchairs.txt"))
+            try
             {
-                string headerLine = sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
+                InitializeComponent();
+
+                PartsView.Rows.Clear();
+
+                WheelChairs = new List<WheelChair>();
+                using (StreamReader sr = new StreamReader(@"Wheelchairs.txt"))
                 {
-                    var values = line.Split('\t');
-                    WheelChairs.Add(new WheelChair(values[0], Convert.ToDouble(values[1].Split('x')[0]), Convert.ToDouble(values[1].Split('x')[1]), values[2], values[3]));
+                    string headerLine = sr.ReadLine();
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        var values = line.Split('\t');
+                        WheelChairs.Add(new WheelChair(values[0], Convert.ToDouble(values[1].Split('x')[0]), Convert.ToDouble(values[1].Split('x')[1]), values[2], values[3]));
+                    }
+                }
+
+                Parts = new List<Part>();
+                using (StreamReader sr = new StreamReader(@"Parts.txt"))
+                {
+                    string headerLine = sr.ReadLine();
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        var values = line.Split('\t');
+                        //Parts.Add(new Part(values[1], values[0], values[2], values[3]));
+                        Parts.Add(new Part(values));
+                    }
+                }
+
+                foreach (WheelChair WC in WheelChairs)
+                {
+                    if (!Wheelchairdropdown.Items.Contains(WC.Model))
+                    {
+                        Wheelchairdropdown.Items.Add(WC.Model);
+                    }
+                }
+
+                foreach (Part part in Parts)
+                {
+                    if (PartDict.ContainsKey(part.Category) == false)
+                    {
+                        PartDict[part.Category] = new List<Part>();
+                        PartDict[part.Category].Add(part);
+                    }
+                    else
+                    {
+                        PartDict[part.Category].Add(part);
+                    }
+                }
+
+                Parts = new List<Part>();
+                using (StreamReader sr = new StreamReader(@"DeliveryMethods.txt"))
+                {
+                    string headerLine = sr.ReadLine();
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        //var values = line.Split('\t');
+                        DeliveryDrop.Items.Add(line.Split('\t')[0]);
+                    }
+                }
+
+                Parts = new List<Part>();
+                using (StreamReader sr = new StreamReader(@"FootPlates.txt"))
+                {
+                    string headerLine = sr.ReadLine();
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        FootPlateHeightDropDown.Items.Add(line.Split('\t')[0]);
+                    }
+                }
+
+                Parts.Clear();//Since we added it into the dict lets delete this to use later
+
+                foreach (DataGridViewColumn dgvc in PartsView.Columns)
+                {
+                    dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
             }
-
-            Parts = new List<Part>();
-            using (StreamReader sr = new StreamReader(@"Parts.txt"))
+            catch (Exception e)
             {
-                string headerLine = sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    var values = line.Split('\t');
-                    Parts.Add(new Part(values[1], values[0], values[2], values[3]));
-                }
+                MessageBox.Show(e.Message);
             }
-
-            foreach (WheelChair WC in WheelChairs)
-            {
-                if (!Wheelchairdropdown.Items.Contains(WC.Model))
-                {
-                    Wheelchairdropdown.Items.Add(WC.Model);
-                }
-            }
-
-           foreach (Part part in Parts)
-            {
-                if (PartDict.ContainsKey(part.Category) ==false)
-                {
-                    PartDict[part.Category] = new List<Part>();
-                    PartDict[part.Category].Add(part);
-                }
-                else
-                {
-                    PartDict[part.Category].Add(part);
-                }
-            }
-
-            Parts = new List<Part>();
-            using (StreamReader sr = new StreamReader(@"DeliveryMethods.txt"))
-            {
-                string headerLine = sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    //var values = line.Split('\t');
-                    DeliveryDrop.Items.Add(line.Split('\t')[0]);
-                }
-            }
-
-            Parts = new List<Part>();
-            using (StreamReader sr = new StreamReader(@"FootPlates.txt"))
-            {
-                string headerLine = sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    //var values = line.Split('\t');
-                    FootPlateHeightDropDown.Items.Add(line.Split('\t')[0]);
-                }
-            }
-
-            Parts.Clear();//Since we added it into the dict lets delete this to use later
-
-            foreach (DataGridViewColumn dgvc in PartsView.Columns)
-            {
-                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-
         }
 
         private void Wheelchairdropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -135,7 +141,7 @@ namespace WheelChairStringMaker
             {
                 foreach (Part part in EntryLists.Value)
                 {
-                    if (part.CompatibleChairs.Contains(Wheelchairdropdown.SelectedItem))
+                    if (part.CompatibleChairs.Contains(Wheelchairdropdown.SelectedItem)) //Replace this function with the check compatibility function
                     {
                         PartsView.Rows.Add(part.Name, part.PartNumber, part.Category);
                         PartsView.Rows[PartsView.Rows.Count - 1].DefaultCellStyle.Font = new Font("Arial", 10);
@@ -144,6 +150,12 @@ namespace WheelChairStringMaker
                 }
             }
             UpdateString();
+        }
+
+        private WheelChair FindWheelChairObjectSelected()
+        {
+            //Search through the wheelchair list to find what wheelchair type is selected based on the selected options
+            return null;
         }
 
         private void SelectedIndexChanged(object sender, EventArgs e)
@@ -189,7 +201,7 @@ namespace WheelChairStringMaker
         private void UpdateString()
         {
             String Str = "";
-            Str += (string)Wheelchairdropdown.SelectedItem + " " + (string)SizeDropdown.SelectedItem + " " + (string)PropulsionDropdown.SelectedItem + Environment.NewLine;
+            Str += (string)Wheelchairdropdown.SelectedItem + " " + (string)SizeDropdown.SelectedItem + " " + (string)PropulsionDropdown.SelectedItem + "    "; //+ Environment.NewLine;
             Str += "Delivery: "+(string)DeliveryDrop.SelectedItem + "     Foot Plate Size: " + (string)FootPlateHeightDropDown.SelectedItem + Environment.NewLine;
             int count = 1;
             foreach (Part part in SelectedParts)
@@ -199,6 +211,13 @@ namespace WheelChairStringMaker
             }
             TextOutput.Text = Str;
             Clipboard.SetText(Str);
+
+            if (count > 7)
+            {
+                MessageBox.Show("Warning: To many lines for text box!");
+            }
+
+
         }
 
         private void label4_Click(object sender, EventArgs e)
