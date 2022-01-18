@@ -1,13 +1,33 @@
 Part Name	Part Number	Category 	Compatible Chairs	Width	Depth	Propulsion Type	incompatible parts	Max Count
-Stump Support L	a	Leg Support	"Action 2, Action 3"	17				
-Stump Support R	b	Leg Support	"Action 2, Action 3"	>17				
-Cushion	c	Other	"Action 2, Action 3"	<17				
-Head Rest	d	Head Support	Action 2	!17				
-Elevated leg Rest L	e	Leg Support	Action 2	>=17				
-Elevated leg Rest R	f	Leg Support	Action 2	<=17				
+Stump Support L	a	Leg Support	"Action 2, Action 3"				"Elevated leg Rest L, Elevated leg Rest R"	
+Stump Support R	b	Leg Support	"Action 2, Action 3"				"Elevated leg Rest L, Elevated leg Rest R"	
+Cushion	c	Other	"Action 2, Action 3"					
+Head Rest	d	Head Support	Action 2					
+Elevated leg Rest L	e	Leg Support	Action 2				"Stump Support L , Stump Support R"	
+Elevated leg Rest R	f	Leg Support	Action 2				"Stump Support L,Stump Support R"	
 Anti Tip	g	Other	Action 2					
 Padded Belt S	h	Trunk Support	Action 2					
 Padded Belt M	i	Trunk Support	Action 2					
 Padded Belt L	j	Trunk Support	Action 2					
 Arm Rest Standard	k	Arm Support	Action 2					
 Arm Rest In-Rigged	l	Arm Support	Action 2					
+Width_equal17	m	test	Action 2	17				
+Width_>17	n	test	Action 2	>17				
+Width_<17	o	test	Action 2	<17				
+Width_<=17	p	test	Action 2	<=17				
+Width_>=17	q	test	Action 2	>=17				
+Width_!17	r	test	Action 2	!17				
+Depth_equal17	m	test	Action 2		17			
+Depth_>17	n	test	Action 2		>17			
+Depth_<17	o	test	Action 2		<17			
+Depth_<=17	p	test	Action 2		<=17			
+Depth_>=17	q	test	Action 2		>=17			
+Depth_!17	r	test	Action 2		!17			
+Prop_AP	r	test	Action 2			AP		
+Prop_SP	r	test	Action 2			SP		
+Prop_Power	r	test	"Action 2, Action 3"			Power		
+Count_1	r	test	"Action 2, Action 3"					1
+Count_2	r	test	"Action 2, Action 3"					2
+Count_3	r	test	"Action 2, Action 3"					3
+mix1	fsfsf	test	"Action 2, Action 3"	>16	>17	AP	"Elevated leg Rest L, Elevated leg Rest R"	2
+mix2	sdad	test	"Action 2, Action 3"	!16	<19	SP	mix1	4

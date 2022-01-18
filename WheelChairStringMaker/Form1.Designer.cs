@@ -53,8 +53,10 @@ namespace WheelChairStringMaker
             // 
             // Wheelchairdropdown
             // 
+            this.Wheelchairdropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Wheelchairdropdown.FormattingEnabled = true;
             this.Wheelchairdropdown.Location = new System.Drawing.Point(12, 63);
+            this.Wheelchairdropdown.MaxDropDownItems = 20;
             this.Wheelchairdropdown.Name = "Wheelchairdropdown";
             this.Wheelchairdropdown.Size = new System.Drawing.Size(285, 28);
             this.Wheelchairdropdown.TabIndex = 0;
@@ -62,8 +64,10 @@ namespace WheelChairStringMaker
             // 
             // SizeDropdown
             // 
+            this.SizeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SizeDropdown.FormattingEnabled = true;
             this.SizeDropdown.Location = new System.Drawing.Point(312, 63);
+            this.SizeDropdown.MaxDropDownItems = 20;
             this.SizeDropdown.Name = "SizeDropdown";
             this.SizeDropdown.Size = new System.Drawing.Size(195, 28);
             this.SizeDropdown.TabIndex = 1;
@@ -71,8 +75,10 @@ namespace WheelChairStringMaker
             // 
             // PropulsionDropdown
             // 
+            this.PropulsionDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PropulsionDropdown.FormattingEnabled = true;
             this.PropulsionDropdown.Location = new System.Drawing.Point(521, 63);
+            this.PropulsionDropdown.MaxDropDownItems = 20;
             this.PropulsionDropdown.Name = "PropulsionDropdown";
             this.PropulsionDropdown.Size = new System.Drawing.Size(195, 28);
             this.PropulsionDropdown.TabIndex = 2;
@@ -99,7 +105,6 @@ namespace WheelChairStringMaker
             this.PartsView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PartsView.Size = new System.Drawing.Size(633, 707);
             this.PartsView.TabIndex = 3;
-            this.PartsView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PartsView_CellContentClick);
             // 
             // PartName
             // 
@@ -150,7 +155,7 @@ namespace WheelChairStringMaker
             this.RemovePart.Name = "RemovePart";
             this.RemovePart.Size = new System.Drawing.Size(195, 53);
             this.RemovePart.TabIndex = 6;
-            this.RemovePart.Text = "RemovePart";
+            this.RemovePart.Text = "Remove Part";
             this.RemovePart.UseVisualStyleBackColor = true;
             this.RemovePart.Click += new System.EventHandler(this.RemovePart_Click);
             // 
@@ -189,7 +194,6 @@ namespace WheelChairStringMaker
             this.label4.Size = new System.Drawing.Size(75, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "Parts List";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -202,8 +206,10 @@ namespace WheelChairStringMaker
             // 
             // DeliveryDrop
             // 
+            this.DeliveryDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeliveryDrop.FormattingEnabled = true;
             this.DeliveryDrop.Location = new System.Drawing.Point(12, 130);
+            this.DeliveryDrop.MaxDropDownItems = 20;
             this.DeliveryDrop.Name = "DeliveryDrop";
             this.DeliveryDrop.Size = new System.Drawing.Size(285, 28);
             this.DeliveryDrop.TabIndex = 12;
@@ -211,8 +217,10 @@ namespace WheelChairStringMaker
             // 
             // FootPlateHeightDropDown
             // 
+            this.FootPlateHeightDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FootPlateHeightDropDown.FormattingEnabled = true;
             this.FootPlateHeightDropDown.Location = new System.Drawing.Point(312, 130);
+            this.FootPlateHeightDropDown.MaxDropDownItems = 20;
             this.FootPlateHeightDropDown.Name = "FootPlateHeightDropDown";
             this.FootPlateHeightDropDown.Size = new System.Drawing.Size(195, 28);
             this.FootPlateHeightDropDown.TabIndex = 13;

@@ -9,10 +9,5 @@ Action 2	16x16	7	AP
 Action 2	17x16	8	AP
 Action 2	18x16	9	AP
 Action 2	19x16	10	AP
-Action 2	19x19	11	SP
-Action 2	19x17	12	SP
-Action 2	19x16	11	AP
-Action 2	19x19	12	AP
-Action 2	20x20	15	AP
 Action 3	10x10	13	Power
 Action 3	12x10	14	Power

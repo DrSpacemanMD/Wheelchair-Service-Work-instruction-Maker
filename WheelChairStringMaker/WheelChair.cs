@@ -21,5 +21,12 @@ namespace WheelChairStringMaker
             PresCode = PresCodeArg;
             PropulsionType = PropulsionTypeArg;
         }
+        public bool CheckMatch(string ModelArg, double WidthArg, double DepthArg, string PropulsionTypeArg)
+        {
+            if (ModelArg == Model && WidthArg == Width && DepthArg == Depth && PropulsionTypeArg == PropulsionType)
+                return true;
+            else
+                return false;
+        }
     }
 }

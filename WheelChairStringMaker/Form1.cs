@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace WheelChairStringMaker
 {
     public partial class Form1 : Form
@@ -101,6 +103,7 @@ namespace WheelChairStringMaker
                 {
                     dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
+                Wheelchairdropdown.SelectedIndex = 0;
             }
             catch (Exception e)
             {
@@ -113,7 +116,6 @@ namespace WheelChairStringMaker
             SizeDropdown.Items.Clear();
             PropulsionDropdown.Items.Clear();
             Parts.Clear();
-            PartsView.Rows.Clear();
             SelectedParts.Clear();
 
 
@@ -131,41 +133,97 @@ namespace WheelChairStringMaker
                 }
             }
 
+            //We dont want the UpdateParts to be called before we have got rid of the emtpy entry in all the lists so I will unsubscruibe the event then re-add it
+            SizeDropdown.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
+            PropulsionDropdown.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
+            DeliveryDrop.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
+            FootPlateHeightDropDown.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
+
             SizeDropdown.SelectedIndex = 0;
             PropulsionDropdown.SelectedIndex = 0;
             DeliveryDrop.SelectedIndex = 0;
             FootPlateHeightDropDown.SelectedIndex = 0;
 
+            SizeDropdown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            PropulsionDropdown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            DeliveryDrop.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            FootPlateHeightDropDown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
 
-            foreach (var EntryLists in PartDict)
-            {
-                foreach (Part part in EntryLists.Value)
-                {
-                    if (part.CompatibleChairs.Contains(Wheelchairdropdown.SelectedItem)) //Replace this function with the check compatibility function
-                    {
-                        PartsView.Rows.Add(part.Name, part.PartNumber, part.Category);
-                        PartsView.Rows[PartsView.Rows.Count - 1].DefaultCellStyle.Font = new Font("Arial", 10);
-                        Parts.Add(part);
-                    }
-                }
-            }
+            UpdateParts();
             UpdateString();
         }
 
-        private WheelChair FindWheelChairObjectSelected()
+        private void UpdateParts()
         {
-            //Search through the wheelchair list to find what wheelchair type is selected based on the selected options
-            return null;
+            try
+            { 
+
+                WheelChair SelectedChairObj = null;
+                foreach (WheelChair WC in WheelChairs)
+                {
+                    string Width = SizeDropdown.SelectedItem.ToString().Split('x')[0];
+                    string Depth = SizeDropdown.SelectedItem.ToString().Split('x')[1];
+                    if (WC.CheckMatch(Wheelchairdropdown.SelectedItem.ToString(), double.Parse(Width), double.Parse(Depth), PropulsionDropdown.SelectedItem.ToString()) == true)
+                    {
+                        SelectedChairObj = WC;
+                        break;
+                    }
+                }
+
+                if (SelectedChairObj == null)
+                    throw new Exception("Error, This wheel chair config is not found within the input file!");
+
+                PartsView.Rows.Clear();
+                Parts.Clear();
+                foreach (var EntryLists in PartDict)
+                {
+                    foreach (Part part in EntryLists.Value)
+                    {
+                        if (part.CheckCompatibility(SelectedChairObj)) //Replace this function with the check compatibility function
+                        {
+                            PartsView.Rows.Add(part.Name, part.PartNumber, part.Category);
+                            PartsView.Rows[PartsView.Rows.Count - 1].DefaultCellStyle.Font = new Font("Arial", 10);
+                            if (SelectedParts.Contains(part))
+                                PartsView.Rows[PartsView.Rows.Count - 1].DefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
+                            Parts.Add(part);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void SelectedIndexChanged(object sender, EventArgs e)
         {
+            int PrevLen = PropulsionDropdown.Items.Count;
+            int previousSelection = PropulsionDropdown.SelectedIndex;
+            //repopulate the propulsion dropdown to ensure is still only showing valid configs
+            PropulsionDropdown.Items.Clear();
+            foreach (WheelChair WC in WheelChairs)
+            {
+                double Width = double.Parse( SizeDropdown.SelectedItem.ToString().Split('x')[0]);
+                double Depth = double.Parse( SizeDropdown.SelectedItem.ToString().Split('x')[1]);
+                if (!PropulsionDropdown.Items.Contains(WC.PropulsionType) && WC.Model == (string)Wheelchairdropdown.SelectedItem && Width == WC.Width && Depth == WC.Depth)
+                {
+                    PropulsionDropdown.Items.Add(WC.PropulsionType);
+                }
+            }
+
+            //If the dropdown changed then reset the selected to 0
+            PropulsionDropdown.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
+            if (PrevLen != PropulsionDropdown.Items.Count)
+                PropulsionDropdown.SelectedIndex = 0;
+            else
+                PropulsionDropdown.SelectedIndex = previousSelection;
+            PropulsionDropdown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+
+            
+
+            UpdateParts();
             UpdateString();
-        }
-
-            private void PartsView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void AddPart_Click(object sender, EventArgs e)
@@ -175,6 +233,21 @@ namespace WheelChairStringMaker
             int selectedIdx = PartsView.SelectedRows[0].Index;
             PartsView.Rows[selectedIdx].DefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold);
             SelectedParts.Add(Parts[selectedIdx]);
+
+            //Check for incompatible parts 
+            if (SelectedParts.Last().CheckForInCompatibleParts(SelectedParts) == true) //If true we have incompatible parts
+                    MessageBox.Show("Warning Incompatible part added");
+
+            int PartCount = 0; 
+            foreach (Part part in SelectedParts)
+            {
+                if (part.Name == SelectedParts.Last().Name)
+                    PartCount += 1;
+            }
+
+            if (PartCount > SelectedParts.Last().maxcount)
+                MessageBox.Show("Warning max number of this part exceeded");
+
             UpdateString();
         }
 
@@ -212,17 +285,11 @@ namespace WheelChairStringMaker
             TextOutput.Text = Str;
             Clipboard.SetText(Str);
 
-            if (count > 7)
+            if (count >= 7)
             {
                 MessageBox.Show("Warning: To many lines for text box!");
             }
-
-
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
