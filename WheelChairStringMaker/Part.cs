@@ -26,11 +26,15 @@ namespace WheelChairStringMaker
 
         private List<string> CompatibleChairs = new List<string>();
 
-        private Comparison WidthCheck;
-        private double WidthValue;
+        //private Comparison WidthCheck;
+        //private double WidthValue;
+        private List<Comparison> WidthCheck = new List<Comparison>();
+        private List<double> WidthValue = new List<double>();
 
-        private Comparison DepthCheck;
-        private double DepthValue;
+        //private Comparison DepthCheck;
+        //private double DepthValue;
+        private List<Comparison> DepthCheck = new List<Comparison>();
+        private List<double> DepthValue = new List<double>();
 
         private List<string> CompatibleProps = new List<string>();
         private List<string> InCompatibleParts = new List<string>();
@@ -51,11 +55,29 @@ namespace WheelChairStringMaker
                 CompatibleChairs[i] = CompatibleChairs[i].Trim(charsToTrim);
 
 
-            WidthCheck = CheckComparison(partstring[4]);
-            WidthValue = GetValue(WidthCheck, partstring[4]);
+            if (this.Name == "Test1")
+            {
+                int x = 0;
+            }
 
-            DepthCheck = CheckComparison(partstring[5]);
-            DepthValue = GetValue(DepthCheck, partstring[5]);
+            string data = partstring[4].Trim(charsToTrim);
+            List<string> datas = data.Split(',').ToList();
+            foreach (string DATA in datas)
+            {
+                WidthCheck.Add (CheckComparison(DATA));
+                WidthValue.Add(GetValue(WidthCheck.Last(), DATA));
+            }
+
+
+            //DepthCheck = CheckComparison(partstring[5]);
+            //DepthValue = GetValue(DepthCheck, partstring[5]);
+            data = partstring[5].Trim(charsToTrim);
+            datas = data.Split(',').ToList();
+            foreach (string DATA in datas)
+            {
+                DepthCheck.Add(CheckComparison(DATA));
+                DepthValue.Add(GetValue(DepthCheck.Last(), DATA));
+            }
 
             string CompProps = partstring[6].Trim(charsToTrim);
             CompatibleProps = CompProps.Split(',').ToList();
@@ -93,6 +115,10 @@ namespace WheelChairStringMaker
 
         private double GetValue(Comparison Comp,String str)
         {
+            char[] charsToTrim = {  ' ' };
+            str = str.Trim(charsToTrim);
+
+
             if (Comp == Comparison.Equal)
                 return double.Parse(str);
             else if (Comp == Comparison.Greaterorequal || Comp == Comparison.Lessorequal)
@@ -106,15 +132,42 @@ namespace WheelChairStringMaker
         //This function will take in a wheelchair and connfirm it is compatible 
         public bool CheckCompatibility(WheelChair wheelchair)
         {
+
+                
+
             bool Compatible = true;
             if (CompatibleChairs.Contains(wheelchair.Model) == false)
                 Compatible = false;
 
-            if (CheckValue(wheelchair.Width, WidthValue, WidthCheck)==false)
+            List<bool> checks = new List<bool>();
+            for (int i = 0; i < WidthValue.Count; i++)
+            {
+
+                if (CheckValue(wheelchair.Width, WidthValue[i], WidthCheck[i]) == false)
+                    checks.Add(false);//Compatible = false;
+                else
+                    checks.Add(true);
+            }
+            if (checks.Contains(true) != true)
                 Compatible = false;
 
-            if (CheckValue(wheelchair.Depth, DepthValue, DepthCheck) == false)
+
+
+            //if (CheckValue(wheelchair.Depth, DepthValue, DepthCheck) == false)
+            //    Compatible = false;
+            checks = new List<bool>();
+            for (int i = 0; i < DepthCheck.Count; i++)
+            {
+                if (CheckValue(wheelchair.Depth, DepthValue[i], DepthCheck[i]) == false)
+                    checks.Add(false);//Compatible = false;
+                else
+                    checks.Add(true);
+            }
+            if (checks.Contains(true) != true)
                 Compatible = false;
+
+
+
 
             if (CompatibleProps.Contains(wheelchair.PropulsionType) == false && CompatibleProps[0]!="")
                 Compatible = false;

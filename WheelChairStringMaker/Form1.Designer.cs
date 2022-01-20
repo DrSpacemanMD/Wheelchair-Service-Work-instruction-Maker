@@ -39,20 +39,22 @@ namespace WheelChairStringMaker
             this.AddPart = new System.Windows.Forms.Button();
             this.TextOutput = new System.Windows.Forms.TextBox();
             this.RemovePart = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.ModelLabel = new System.Windows.Forms.Label();
+            this.SizeLabel = new System.Windows.Forms.Label();
+            this.PropLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.DeliveryDrop = new System.Windows.Forms.ComboBox();
             this.FootPlateHeightDropDown = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.Deliverylabel = new System.Windows.Forms.Label();
+            this.FootPlateLabel = new System.Windows.Forms.Label();
+            this.Clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PartsView)).BeginInit();
             this.SuspendLayout();
             // 
             // Wheelchairdropdown
             // 
+            this.Wheelchairdropdown.BackColor = System.Drawing.SystemColors.Window;
             this.Wheelchairdropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Wheelchairdropdown.FormattingEnabled = true;
             this.Wheelchairdropdown.Location = new System.Drawing.Point(12, 63);
@@ -64,6 +66,7 @@ namespace WheelChairStringMaker
             // 
             // SizeDropdown
             // 
+            this.SizeDropdown.BackColor = System.Drawing.SystemColors.Window;
             this.SizeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SizeDropdown.FormattingEnabled = true;
             this.SizeDropdown.Location = new System.Drawing.Point(312, 63);
@@ -75,6 +78,7 @@ namespace WheelChairStringMaker
             // 
             // PropulsionDropdown
             // 
+            this.PropulsionDropdown.BackColor = System.Drawing.SystemColors.Window;
             this.PropulsionDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PropulsionDropdown.FormattingEnabled = true;
             this.PropulsionDropdown.Location = new System.Drawing.Point(521, 63);
@@ -159,32 +163,32 @@ namespace WheelChairStringMaker
             this.RemovePart.UseVisualStyleBackColor = true;
             this.RemovePart.Click += new System.EventHandler(this.RemovePart_Click);
             // 
-            // label1
+            // ModelLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Model";
+            this.ModelLabel.AutoSize = true;
+            this.ModelLabel.Location = new System.Drawing.Point(12, 40);
+            this.ModelLabel.Name = "ModelLabel";
+            this.ModelLabel.Size = new System.Drawing.Size(52, 20);
+            this.ModelLabel.TabIndex = 7;
+            this.ModelLabel.Text = "Model";
             // 
-            // label2
+            // SizeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(308, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 20);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Size";
+            this.SizeLabel.AutoSize = true;
+            this.SizeLabel.Location = new System.Drawing.Point(308, 40);
+            this.SizeLabel.Name = "SizeLabel";
+            this.SizeLabel.Size = new System.Drawing.Size(40, 20);
+            this.SizeLabel.TabIndex = 8;
+            this.SizeLabel.Text = "Size";
             // 
-            // label3
+            // PropLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(517, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 20);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Propulsion";
+            this.PropLabel.AutoSize = true;
+            this.PropLabel.Location = new System.Drawing.Point(517, 40);
+            this.PropLabel.Name = "PropLabel";
+            this.PropLabel.Size = new System.Drawing.Size(83, 20);
+            this.PropLabel.TabIndex = 9;
+            this.PropLabel.Text = "Propulsion";
             // 
             // label4
             // 
@@ -206,6 +210,7 @@ namespace WheelChairStringMaker
             // 
             // DeliveryDrop
             // 
+            this.DeliveryDrop.BackColor = System.Drawing.SystemColors.Window;
             this.DeliveryDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DeliveryDrop.FormattingEnabled = true;
             this.DeliveryDrop.Location = new System.Drawing.Point(12, 130);
@@ -217,6 +222,7 @@ namespace WheelChairStringMaker
             // 
             // FootPlateHeightDropDown
             // 
+            this.FootPlateHeightDropDown.BackColor = System.Drawing.SystemColors.Window;
             this.FootPlateHeightDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FootPlateHeightDropDown.FormattingEnabled = true;
             this.FootPlateHeightDropDown.Location = new System.Drawing.Point(312, 130);
@@ -226,38 +232,50 @@ namespace WheelChairStringMaker
             this.FootPlateHeightDropDown.TabIndex = 13;
             this.FootPlateHeightDropDown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
             // 
-            // label6
+            // Deliverylabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 104);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 20);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Deivery Method";
+            this.Deliverylabel.AutoSize = true;
+            this.Deliverylabel.Location = new System.Drawing.Point(12, 104);
+            this.Deliverylabel.Name = "Deliverylabel";
+            this.Deliverylabel.Size = new System.Drawing.Size(119, 20);
+            this.Deliverylabel.TabIndex = 14;
+            this.Deliverylabel.Text = "Deivery Method";
             // 
-            // label7
+            // FootPlateLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(308, 107);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(133, 20);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Foot Plate Height";
+            this.FootPlateLabel.AutoSize = true;
+            this.FootPlateLabel.BackColor = System.Drawing.Color.Transparent;
+            this.FootPlateLabel.Location = new System.Drawing.Point(308, 107);
+            this.FootPlateLabel.Name = "FootPlateLabel";
+            this.FootPlateLabel.Size = new System.Drawing.Size(133, 20);
+            this.FootPlateLabel.TabIndex = 15;
+            this.FootPlateLabel.Text = "Foot Plate Height";
+            // 
+            // Clear
+            // 
+            this.Clear.Location = new System.Drawing.Point(521, 225);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(195, 53);
+            this.Clear.TabIndex = 16;
+            this.Clear.Text = "Clear";
+            this.Clear.UseVisualStyleBackColor = true;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1391, 798);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.Clear);
+            this.Controls.Add(this.FootPlateLabel);
+            this.Controls.Add(this.Deliverylabel);
             this.Controls.Add(this.FootPlateHeightDropDown);
             this.Controls.Add(this.DeliveryDrop);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PropLabel);
+            this.Controls.Add(this.SizeLabel);
+            this.Controls.Add(this.ModelLabel);
             this.Controls.Add(this.RemovePart);
             this.Controls.Add(this.TextOutput);
             this.Controls.Add(this.AddPart);
@@ -285,15 +303,16 @@ namespace WheelChairStringMaker
         private System.Windows.Forms.Button AddPart;
         private System.Windows.Forms.TextBox TextOutput;
         private System.Windows.Forms.Button RemovePart;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label ModelLabel;
+        private System.Windows.Forms.Label SizeLabel;
+        private System.Windows.Forms.Label PropLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox DeliveryDrop;
         private System.Windows.Forms.ComboBox FootPlateHeightDropDown;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label Deliverylabel;
+        private System.Windows.Forms.Label FootPlateLabel;
+        private System.Windows.Forms.Button Clear;
     }
 }
 

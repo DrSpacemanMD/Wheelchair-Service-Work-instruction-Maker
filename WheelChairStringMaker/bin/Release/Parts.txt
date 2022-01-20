@@ -10,4 +10,4 @@ Padded Belt S	h	Trunk Support	Action 2
 Padded Belt M	i	Trunk Support	Action 2					
 Padded Belt L	j	Trunk Support	Action 2					
 Arm Rest Standard	k	Arm Support	Action 2					
-Arm Rest In-Rigged	l	Arm Support	Action 2							
+Arm Rest In-Rigged	l	Arm Support	Action 2					

@@ -19,7 +19,7 @@ namespace WheelChairStringMaker
         private List<Part> Parts;
         private Dictionary<string, List<Part>> PartDict = new Dictionary<string, List<Part>>();
         private List<Part> SelectedParts = new List<Part>();
-
+        private int WarningLineCount = 7;
         public Form1()
         {
             try
@@ -27,6 +27,21 @@ namespace WheelChairStringMaker
                 InitializeComponent();
 
                 PartsView.Rows.Clear();
+
+                using(StreamReader sr = new StreamReader(@"Settings.txt"))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        var values = line.Split(' ');
+                        if (values[0]== "WarningOnMaxLine")
+                        {
+                            if (values[1] == "no")
+                                WarningLineCount = -1;
+                        }
+                    }
+                }
+
 
                 WheelChairs = new List<WheelChair>();
                 using (StreamReader sr = new StreamReader(@"Wheelchairs.txt"))
@@ -79,6 +94,7 @@ namespace WheelChairStringMaker
                 {
                     string headerLine = sr.ReadLine();
                     string line;
+                    DeliveryDrop.Items.Add("");
                     while ((line = sr.ReadLine()) != null)
                     {
                         //var values = line.Split('\t');
@@ -91,6 +107,7 @@ namespace WheelChairStringMaker
                 {
                     string headerLine = sr.ReadLine();
                     string line;
+                    FootPlateHeightDropDown.Items.Add("");
                     while ((line = sr.ReadLine()) != null)
                     {
                         FootPlateHeightDropDown.Items.Add(line.Split('\t')[0]);
@@ -118,7 +135,8 @@ namespace WheelChairStringMaker
             Parts.Clear();
             SelectedParts.Clear();
 
-
+            SizeDropdown.Items.Add("");
+            PropulsionDropdown.Items.Add("");
             foreach (WheelChair WC in WheelChairs)
             {
                 string Size = WC.Width.ToString() + " x " + WC.Depth.ToString();
@@ -149,6 +167,11 @@ namespace WheelChairStringMaker
             DeliveryDrop.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
             FootPlateHeightDropDown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
 
+            FootPlateLabel.ForeColor = Color.Red;
+            SizeLabel.ForeColor = Color.Red;
+            PropLabel.ForeColor = Color.Red;
+            Deliverylabel.ForeColor = Color.Red;
+
             UpdateParts();
             UpdateString();
         }
@@ -156,7 +179,13 @@ namespace WheelChairStringMaker
         private void UpdateParts()
         {
             try
-            { 
+            {
+                if (SizeDropdown.SelectedItem.ToString() == "" || PropulsionDropdown.SelectedItem.ToString() == "" || DeliveryDrop.SelectedItem.ToString() == "" || FootPlateHeightDropDown.SelectedItem.ToString() == "")
+                {
+                    PartsView.Rows.Clear();
+                    Parts.Clear();
+                    return;
+                }
 
                 WheelChair SelectedChairObj = null;
                 foreach (WheelChair WC in WheelChairs)
@@ -198,29 +227,55 @@ namespace WheelChairStringMaker
 
         private void SelectedIndexChanged(object sender, EventArgs e)
         {
-            int PrevLen = PropulsionDropdown.Items.Count;
-            int previousSelection = PropulsionDropdown.SelectedIndex;
-            //repopulate the propulsion dropdown to ensure is still only showing valid configs
-            PropulsionDropdown.Items.Clear();
-            foreach (WheelChair WC in WheelChairs)
-            {
-                double Width = double.Parse( SizeDropdown.SelectedItem.ToString().Split('x')[0]);
-                double Depth = double.Parse( SizeDropdown.SelectedItem.ToString().Split('x')[1]);
-                if (!PropulsionDropdown.Items.Contains(WC.PropulsionType) && WC.Model == (string)Wheelchairdropdown.SelectedItem && Width == WC.Width && Depth == WC.Depth)
-                {
-                    PropulsionDropdown.Items.Add(WC.PropulsionType);
-                }
-            }
-
-            //If the dropdown changed then reset the selected to 0
-            PropulsionDropdown.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
-            if (PrevLen != PropulsionDropdown.Items.Count)
-                PropulsionDropdown.SelectedIndex = 0;
+            if (FootPlateHeightDropDown.SelectedItem.ToString() == "")
+                FootPlateLabel.ForeColor = Color.Red;
             else
-                PropulsionDropdown.SelectedIndex = previousSelection;
-            PropulsionDropdown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+                FootPlateLabel.ForeColor = Color.Black;
 
-            
+            if (SizeDropdown.SelectedItem.ToString() == "")
+                SizeLabel.ForeColor = Color.Red;
+            else
+                SizeLabel.ForeColor = Color.Black;
+
+            if (PropulsionDropdown.SelectedItem.ToString() == "")
+                PropLabel.ForeColor = Color.Red;
+            else
+                PropLabel.ForeColor = Color.Black;
+
+            if (DeliveryDrop.SelectedItem.ToString() == "")
+                Deliverylabel.ForeColor = Color.Red;
+            else
+                Deliverylabel.ForeColor = Color.Black;
+
+
+            if (SizeDropdown.SelectedItem.ToString() != "") // we dont update anything when the size isnt chosen anyway
+            {
+                int PrevLen = PropulsionDropdown.Items.Count;
+                int previousSelection = PropulsionDropdown.SelectedIndex;
+                //repopulate the propulsion dropdown to ensure is still only showing valid configs
+                PropulsionDropdown.Items.Clear();
+                PropulsionDropdown.Items.Add("");
+                foreach (WheelChair WC in WheelChairs)
+                {
+                    double Width = double.Parse(SizeDropdown.SelectedItem.ToString().Split('x')[0]);
+                    double Depth = double.Parse(SizeDropdown.SelectedItem.ToString().Split('x')[1]);
+                    if (!PropulsionDropdown.Items.Contains(WC.PropulsionType) && WC.Model == (string)Wheelchairdropdown.SelectedItem && Width == WC.Width && Depth == WC.Depth)
+                    {
+                        PropulsionDropdown.Items.Add(WC.PropulsionType);
+                    }
+                }
+
+                //If the dropdown changed then reset the selected to 0
+                PropulsionDropdown.SelectedIndexChanged -= new System.EventHandler(this.SelectedIndexChanged);
+                if (PrevLen != PropulsionDropdown.Items.Count)
+                {
+                    PropulsionDropdown.SelectedIndex = 0;
+                    PropLabel.ForeColor = Color.Red;
+                }
+                else
+                    PropulsionDropdown.SelectedIndex = previousSelection;
+                PropulsionDropdown.SelectedIndexChanged += new System.EventHandler(this.SelectedIndexChanged);
+            } 
 
             UpdateParts();
             UpdateString();
@@ -273,6 +328,12 @@ namespace WheelChairStringMaker
 
         private void UpdateString()
         {
+            if (SizeDropdown.SelectedItem.ToString() == "" || PropulsionDropdown.SelectedItem.ToString() == "" || DeliveryDrop.SelectedItem.ToString() == "" || FootPlateHeightDropDown.SelectedItem.ToString() == "")
+            {
+                TextOutput.Text = "";
+                return;
+            }
+
             String Str = "";
             Str += (string)Wheelchairdropdown.SelectedItem + " " + (string)SizeDropdown.SelectedItem + " " + (string)PropulsionDropdown.SelectedItem + "    "; //+ Environment.NewLine;
             Str += "Delivery: "+(string)DeliveryDrop.SelectedItem + "     Foot Plate Size: " + (string)FootPlateHeightDropDown.SelectedItem + Environment.NewLine;
@@ -285,11 +346,19 @@ namespace WheelChairStringMaker
             TextOutput.Text = Str;
             Clipboard.SetText(Str);
 
-            if (count >= 7)
+            if (count >= WarningLineCount && WarningLineCount>0)
             {
                 MessageBox.Show("Warning: To many lines for text box!");
             }
         }
 
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            SizeDropdown.SelectedIndex = 0;
+            PropulsionDropdown.SelectedIndex = 0;
+            DeliveryDrop.SelectedIndex = 0;
+            FootPlateHeightDropDown.SelectedIndex = 0;
+            SelectedParts.Clear();
+        }
     }
 }
