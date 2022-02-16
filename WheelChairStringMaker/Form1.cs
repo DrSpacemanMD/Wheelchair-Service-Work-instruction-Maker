@@ -336,7 +336,7 @@ namespace WheelChairStringMaker
 
             String Str = "";
             Str += (string)Wheelchairdropdown.SelectedItem + " " + (string)SizeDropdown.SelectedItem + " " + (string)PropulsionDropdown.SelectedItem + "    "; //+ Environment.NewLine;
-            Str += "Delivery: "+(string)DeliveryDrop.SelectedItem + "     Foot Plate Size: " + (string)FootPlateHeightDropDown.SelectedItem + Environment.NewLine;
+            Str += "Delivery: "+(string)DeliveryDrop.SelectedItem + "     Foot Plate Height: " + (string)FootPlateHeightDropDown.SelectedItem + Environment.NewLine;
             int count = 1;
             foreach (Part part in SelectedParts)
             {

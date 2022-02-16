@@ -237,9 +237,9 @@ namespace WheelChairStringMaker
             this.Deliverylabel.AutoSize = true;
             this.Deliverylabel.Location = new System.Drawing.Point(12, 104);
             this.Deliverylabel.Name = "Deliverylabel";
-            this.Deliverylabel.Size = new System.Drawing.Size(119, 20);
+            this.Deliverylabel.Size = new System.Drawing.Size(122, 20);
             this.Deliverylabel.TabIndex = 14;
-            this.Deliverylabel.Text = "Deivery Method";
+            this.Deliverylabel.Text = "Delivery Method";
             // 
             // FootPlateLabel
             // 
